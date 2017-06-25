@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>rext | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么时候使用类，什么时候不使用，怎么替代它，为什么替代它  译者水平有限，原汁原味请移步：原文链接 Obligatory semi-to-not-related header image via: https://unsplash.com/photos/sMQiL_2v4vs 当涉及到应用计划持续维护的时候，我们都希望有易维护的简单代码。我们也经常争论如何实现它。在这篇博客中，我将讨论我如何看待函">
+<meta name="keywords" content="JavaScript,翻译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rext">
+<meta property="og:url" content="http://yoursite.com/2017/06/19/类的复杂度和函数式编程/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么时候使用类，什么时候不使用，怎么替代它，为什么替代它  译者水平有限，原汁原味请移步：原文链接 Obligatory semi-to-not-related header image via: https://unsplash.com/photos/sMQiL_2v4vs 当涉及到应用计划持续维护的时候，我们都希望有易维护的简单代码。我们也经常争论如何实现它。在这篇博客中，我将讨论我如何看待函">
+<meta property="og:image" content="http://p0.qhimg.com/t01ec95dba8bdafa400.jpg">
+<meta property="og:image" content="http://p0.qhimg.com/t016be2e1b19b3063b3.png">
+<meta property="og:image" content="http://p0.qhimg.com/t01a2a827ff8e8b46d8.png">
+<meta property="og:image" content="http://p0.qhimg.com/t01fb9a93490708dc6e.png">
+<meta property="og:updated_time" content="2017-06-25T12:43:18.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rext">
+<meta name="twitter:description" content="什么时候使用类，什么时候不使用，怎么替代它，为什么替代它  译者水平有限，原汁原味请移步：原文链接 Obligatory semi-to-not-related header image via: https://unsplash.com/photos/sMQiL_2v4vs 当涉及到应用计划持续维护的时候，我们都希望有易维护的简单代码。我们也经常争论如何实现它。在这篇博客中，我将讨论我如何看待函">
+<meta name="twitter:image" content="http://p0.qhimg.com/t01ec95dba8bdafa400.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-类的复杂度和函数式编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/19/类的复杂度和函数式编程/" class="article-date">
+  <time datetime="2017-06-19T10:39:55.000Z" itemprop="datePublished">2017-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      rext
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>什么时候使用类，什么时候不使用，怎么替代它，为什么替代它</em></p>
+<p><img src="http://p0.qhimg.com/t01ec95dba8bdafa400.jpg" alt=""></p>
+<p><em>译者水平有限，原汁原味请移步：<a href="https://medium.com/@kentcdodds/classes-complexity-and-functional-programming-a8dd86903747/" target="_blank" rel="external">原文链接</a></em></p>
+<p>Obligatory semi-to-not-related header image via: <a href="https://unsplash.com/photos/sMQiL_2v4vs" target="_blank" rel="external">https://unsplash.com/photos/sMQiL_2v4vs</a></p>
+<p>当涉及到应用计划持续维护的时候，我们都希望有易维护的简单代码。我们也经常争论如何实现它。在这篇博客中，我将讨论我如何看待函数，对象和类，刚好也符合这个争论。</p>
+<h3 id="一个类"><a href="#一个类" class="headerlink" title="一个类"></a>一个类</h3><p>让我们看看一个类的例子来说明我的观点：</p>
+<p>我们通过构造函数实例化声明了一个<code>Person</code>类，它拥有一些属性和方法。如果我们从 Chrome 的控制台打印出<code>Person</code>对象，它看起来像这样：</p>
+<p><img src="http://p0.qhimg.com/t016be2e1b19b3063b3.png" alt=""></p>
+<p>在<strong>proto</strong>上拥有方法的 Person 实例</p>
+<p>这里真正值得注意的地方是，这个<code>person</code>的大部分属性都在<code>prototype</code>上（在屏幕上以<code>_proto_</code>显示）而不是<code>person</code>实例上。这是非常重要的，因为如果我们有一万个<code>person</code>实例，他们能够在同样的方法上共享引用而不是有一万个那些方法的拷贝。</p>
+<p>现在我想关注的是想要理解这段代码，你需要需要学习多少概念并且那些概念有多么复杂。</p>
+<ul>
+<li><p>对象：相当基础。绝对的入门级。它们不会增加复杂度。</p>
+</li>
+<li><p>函数(和<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures" target="_blank" rel="external">闭包</a>): 这也相当的基础。闭包的确增加了一点复杂度(并且如果你不小心，它能引发一些<a href="https://blog.meteor.com/an-interesting-kind-of-javascript-memory-leak-8b47d2e7f156" target="_blank" rel="external">问题</a> ), 但是不学习它们，你真的无法在 JavaScript 语言走得更远些 (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures" target="_blank" rel="external">这里</a>可以学到更多).</p>
+</li>
+<li><p>一个函数或者方法的<code>this</code>关键字：JavaScript 中非常重要的概念。</p>
+</li>
+</ul>
+<blockquote>
+<p>我的观点是<code>this</code>学起来比较困难并且给代码增加了不必要的复杂度</p>
+</blockquote>
+<h3 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a><code>this</code>关键字</h3><p>这里是 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="external">MDN</a> 关于<code>this</code>的介绍</p>
+<blockquote>
+<p>JavaScript 中<strong>函数的<code>this</code>关键字</strong>跟其他语言有点不同。并且在<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode" target="_blank" rel="external">严格模式</a>和非严格模式下也有些不同。</p>
+<p>大多数情况下，<code>this</code>的值取决于被调用的函数。执行过程中，不能被重新赋值，并且每次函数调用的时候它都可能不一样。ES5 提供了<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" target="_blank" rel="external"><code>bind</code>方法</a>来绑定一个函数的<code>this</code>值而<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this#The_bind_method" target="_blank" rel="external">不用在意函数调用的方式</a>，并且ES2015提供了<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="external">箭头函数</a>，它的<code>this</code>的作用域是词法作用域（<code>this</code>的值就是当前函数的上下文）。</p>
+</blockquote>
+<p>也许没那么复杂，但这个隐含的关系的确比对象和闭包复杂一点。你不可能避免使用对象和闭包，但我相信大多数情况你能避免使用类和<code>this</code></p>
+<p>这有一个因使用<code>this</code>出错的例子（故意的）：</p>
+<blockquote>
+<p>核心问题是因为使用<code>this</code>你的函数因为各种各样的引用变得混乱不堪。</p>
+</blockquote>
+<p>想要一个更真实的例子，你可在 React ⚛️ 中寻找。如果你已经使用了 React 一段时间，你可能已经遇到了我之前遇到的错误：</p>
+<p>当你点击一个按钮的时候，你会看到： <code>Uncaught TypeError: Cannot read property &#39;setState&#39; of null at increment</code></p>
+<p>这都是因为<code>this</code>的缘故，当我们执行<code>onClick</code>时，它没有调用我们的<code>increment</code>函数，因为<code>this</code>绑定在了我们组件的实例上。有一些方法可以修正它 (<a href="https://egghead.io/lessons/javascript-public-class-fields-with-react-components" target="_blank" rel="external">观看免费视频教程 egghead.io video 💻 </a>)。</p>
+<blockquote>
+<p>事实上你不得不考虑<code>this</code>增加了你的认知负荷，最好避免使用它。</p>
+</blockquote>
+<h3 id="如何避免-this"><a href="#如何避免-this" class="headerlink" title="如何避免 this"></a>如何避免 <code>this</code></h3><p>如果<code>this</code>增加了很多复杂度，我们如何在不添加更复杂代码的基础上避免它。替代面向对象的方法，我们试试函数式的方法如何？如果我们使用<a href="https://en.wikipedia.org/wiki/Pure_function" target="_blank" rel="external">纯函数</a>看起来会是这样：</p>
+<p>用这种方法，我们不会用到<code>this</code>。我们无需考虑它。最终，它也很容易理解。只是函数和对象。基本上没有状态，你只需要注意这些函数，这种感觉很棒！<code>person</code>对象只是数据，所以更容易思考：</p>
+<p><img src="http://p0.qhimg.com/t01a2a827ff8e8b46d8.png" alt=""></p>
+<p><code>person3</code> 对象只有问候和名字</p>
+<p>函数式编程的另一个优势是很容易进行单元测试。你可以简单的调用函数并断言它的输出。在这之前，你无需设定任何状态。这是一个非常方便的特性。</p>
+<p>注意，只要它“足够快”，函数式编程可以让代码更容易理解。尽管执行速度不是重点，在特定场景下你可使用特定的方式来获得更好的性能表现（例如用<code>===</code>来检查对象）。通常，<strong>使用函数式编程的瓶颈是它让你的应用变慢</strong>。</p>
+<h3 id="成本和收益"><a href="#成本和收益" class="headerlink" title="成本和收益"></a>成本和收益</h3><p><code>class</code>的使用并不坏，它的确有它的使用场景。如果你真的有一些 <a href="https://en.wikipedia.org/wiki/Hot_spot_%28computer_programming%29" target="_blank" rel="external">“hot” code</a> 并且已经成为你应用的瓶颈，这时用<code>class</code>真的可以加快速度。但 99% 的时候，情况并非如此。我不认为<code>class</code>和<code>this</code>增加的复杂度在大部分情况下是值得的（我们甚至没有使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain" target="_blank" rel="external">原型继承</a>）。我也有需要使用<code>class</code>来获得更好的性能的时候。我只在 React 组件上使用它们，因为如果你使用状态或者生命周期方法你必须使用它们（<a href="https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State" target="_blank" rel="external">未来</a>可能不会）</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>在 JavaScript 中类（和原型）有它们的使用场景。但它们是一种优化。它们没能让你的代码更加简单，反而更加复杂。所以最好把你的关注点集中在不仅学起来简单而且也容易理解的：函数和对象上。</p>
+<p><img src="http://p0.qhimg.com/t01fb9a93490708dc6e.png" alt=""></p>
+<p><a href="https://twitter.com/kentcdodds" target="_blank" rel="external">再见</a>朋友们!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/19/类的复杂度和函数式编程/" data-id="cj4cq6bvj0000e8vkemozcagq" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/24/在-Vue-js-中使用混合/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          在 Vue.js 中使用混合
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/16/深入剖析现代-JavaScript-应用/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">深入剖析现代 JavaScript 应用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/翻译/" style="font-size: 20px;">翻译</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/24/在-Vue-js-中使用混合/">在 Vue.js 中使用混合</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/19/类的复杂度和函数式编程/">rext</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/16/深入剖析现代-JavaScript-应用/">深入剖析现代 JavaScript 应用</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/08/CSS-BEM-命名规则核心概念介绍/">CSS BEM 命名规则核心概念介绍</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

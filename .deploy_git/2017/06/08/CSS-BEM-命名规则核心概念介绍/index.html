@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS BEM 命名规则核心概念介绍 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="译者水平有限，原汁原味请移步：原文链接 核心概念 块 元素 修饰符 BEM 实体 混合 BEM 树 块的实现 块的实现技术 块的重新定义 重定义层级  块逻辑和功能独立的页面组件，等同于Web组件。一个块封装了行为（JavaScript），模板，样式（CSS），和其他实现技术。块是相对独立的，可被重复调用，这有助于项目开发和维护。   块特性嵌套结构块可以嵌套在任何其他块中 例如，一个head块可">
+<meta name="keywords" content="翻译,CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS BEM 命名规则核心概念介绍">
+<meta property="og:url" content="http://yoursite.com/2017/06/08/CSS-BEM-命名规则核心概念介绍/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="译者水平有限，原汁原味请移步：原文链接 核心概念 块 元素 修饰符 BEM 实体 混合 BEM 树 块的实现 块的实现技术 块的重新定义 重定义层级  块逻辑和功能独立的页面组件，等同于Web组件。一个块封装了行为（JavaScript），模板，样式（CSS），和其他实现技术。块是相对独立的，可被重复调用，这有助于项目开发和维护。   块特性嵌套结构块可以嵌套在任何其他块中 例如，一个head块可">
+<meta property="og:image" content="https://en.bem.info/kFetIbKxQdABHhUecbic45Il0Bg.png">
+<meta property="og:image" content="https://en.bem.info/v80tUiEPgSQtyW9a7C8rxdn-5EM.png">
+<meta property="og:image" content="https://en.bem.info/0bbhZyhaBhRzqBh5nLYQEnFpDTk.png">
+<meta property="og:image" content="https://en.bem.info/VBlEdksG7XkL4DLPWe4rcYb5hGo.png">
+<meta property="og:image" content="https://en.bem.info/cPrdQL4EZZdhPIrcYOayygPBSm4.png">
+<meta property="og:image" content="https://en.bem.info/WSU5nwZla7p44W2tdxiP371xx38.png">
+<meta property="og:image" content="https://en.bem.info/kqvCO2ZXeivuLHCbn2to5chFZrM.png">
+<meta property="og:updated_time" content="2017-06-25T12:43:18.284Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS BEM 命名规则核心概念介绍">
+<meta name="twitter:description" content="译者水平有限，原汁原味请移步：原文链接 核心概念 块 元素 修饰符 BEM 实体 混合 BEM 树 块的实现 块的实现技术 块的重新定义 重定义层级  块逻辑和功能独立的页面组件，等同于Web组件。一个块封装了行为（JavaScript），模板，样式（CSS），和其他实现技术。块是相对独立的，可被重复调用，这有助于项目开发和维护。   块特性嵌套结构块可以嵌套在任何其他块中 例如，一个head块可">
+<meta name="twitter:image" content="https://en.bem.info/kFetIbKxQdABHhUecbic45Il0Bg.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CSS-BEM-命名规则核心概念介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/08/CSS-BEM-命名规则核心概念介绍/" class="article-date">
+  <time datetime="2017-06-08T09:57:28.000Z" itemprop="datePublished">2017-06-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS BEM 命名规则核心概念介绍
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>译者水平有限，原汁原味请移步：<a href="https://en.bem.info/methodology/key-concepts/" target="_blank" rel="external">原文链接</a></em></p>
+<h1 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h1><ul>
+<li>块</li>
+<li>元素</li>
+<li>修饰符</li>
+<li>BEM 实体</li>
+<li>混合</li>
+<li>BEM 树</li>
+<li>块的实现</li>
+<li>块的实现技术</li>
+<li>块的重新定义</li>
+<li>重定义层级</li>
+</ul>
+<h2 id="块"><a href="#块" class="headerlink" title="块"></a>块</h2><p>逻辑和功能独立的页面组件，等同于Web组件。一个块封装了行为（JavaScript），模板，样式（CSS），和其他实现技术。块是相对独立的，可被重复调用，这有助于项目开发和维护。  </p>
+<h3 id="块特性"><a href="#块特性" class="headerlink" title="块特性"></a>块特性</h3><h4 id="嵌套结构"><a href="#嵌套结构" class="headerlink" title="嵌套结构"></a>嵌套结构</h4><p>块可以嵌套在任何其他块中</p>
+<p>例如，一个<code>head</code>块可以包含一个logo<code>(logo)</code>,一个搜索表单<code>(search)</code>，和一个登录块<code>(auth)</code>。</p>
+<p><img src="https://en.bem.info/kFetIbKxQdABHhUecbic45Il0Bg.png" alt=""></p>
+<h4 id="随处可放"><a href="#随处可放" class="headerlink" title="随处可放"></a>随处可放</h4><p>块即可以在单个页面上移动，也可以在项目内多个页面之间移动。块作为独立实体的实现方式让它可以在页面上改变位置的时候保持它原有的功能和外观。</p>
+<p>因此，块中的logo和登录表单可以互换位置，而不用修改CSS或JavaScript代码。</p>
+<p><img src="https://en.bem.info/v80tUiEPgSQtyW9a7C8rxdn-5EM.png" alt=""><br><img src="https://en.bem.info/0bbhZyhaBhRzqBh5nLYQEnFpDTk.png" alt=""></p>
+<h4 id="重用"><a href="#重用" class="headerlink" title="重用"></a>重用</h4><p>一个界面可以包含多个同样的块</p>
+<p><img src="https://en.bem.info/VBlEdksG7XkL4DLPWe4rcYb5hGo.png" alt=""></p>
+<h2 id="元素"><a href="#元素" class="headerlink" title="元素"></a>元素</h2><p>块的组成部分且不能在块之外使用</p>
+<p>例如，一个菜单项没有用在菜单块之外，所以它实际就是一个元素 </p>
+<p><img src="https://en.bem.info/cPrdQL4EZZdhPIrcYOayygPBSm4.png" alt=""></p>
+<blockquote>
+<p><a href="https://en.bem.info/methodology/faq/#a-block-or-an-element-when-should-i-use-which" target="_blank" rel="external">块或元素，我应该用哪个？</a></p>
+<p><a href="https://en.bem.info/methodology/faq/#why-does-bem-not-recommend-using-elements-within-elements-block__elem1__elem2" target="_blank" rel="external">在元素中用元素是 BEM 技术不推荐的</a></p>
+</blockquote>
+<h2 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h2><p>一个 BEM 实体是用来定义块或元素的外观和行为</p>
+<p>修饰符的使用是可选的</p>
+<p>修饰符本质上和 HTML 的属性相似。因为修饰符的使用，让之前的块看起来不一样。</p>
+<p>例如，菜单块的外观可能因使用了修饰符而发生改变。</p>
+<p><img src="https://en.bem.info/WSU5nwZla7p44W2tdxiP371xx38.png" alt=""></p>
+<p>修饰符可以在运行时改变（比如，作为块上 DOM 事件的响应）或者通过其他块。</p>
+<p>例如，当用户点击登录按钮的时候，如果提供了一个错误的凭证，<code>visible</code> 修饰符将会被用在一个含有错误提示的隐藏块上。</p>
+<h2 id="BEM-实体"><a href="#BEM-实体" class="headerlink" title="BEM 实体"></a>BEM 实体</h2><p>块，元素和修饰符都被称作 BEM 实体。</p>
+<p>这个概念既可以用于表示一个独立的 BEM 实体，也可以用于表示块，元素和修饰符。</p>
+<h2 id="混合"><a href="#混合" class="headerlink" title="混合"></a>混合</h2><p>例如，不同的多个BEM实体可以同时用于一个DOM节点上</p>
+<p>混合允许我们  </p>
+<ul>
+<li>合并多个 BEM 实体的行为和样式以避免出现代码重复</li>
+<li>在已有 BEM 实体上创建新的语义化的界面组件</li>
+</ul>
+<p>我们来考虑一下由一个块和另一个块中元素混合的情况</p>
+<p>我们假设项目中的链接通过<code>link</code>块来实现。我们需要把菜单项设计成链接。有这些方法可以实现。</p>
+<ul>
+<li>为菜单项创建指向链接的修饰符。通过修饰符来实现，需要复制<code>link</code>块的行为和样式代码。这就造成了代码重复。</li>
+<li>让一个混合体包含一个通用的link块和一个menu 块中的link元素。这两个 BEM实体的混合体可以让我们在不用复制代码的情况下使用link块的功能和menu块的样式。</li>
+</ul>
+<h2 id="BEM-树"><a href="#BEM-树" class="headerlink" title="BEM 树"></a>BEM 树</h2><p>一个Web页面结构包含块，元素和修饰符。这是一个 DOM 树的抽象，描述了 BEM 实体的名字，他们的状态，顺序，嵌套和辅助数据。</p>
+<p>在现实项目中，BEM 树可以以任意支持树结构的方式展现。</p>
+<p>我们看看一个 DOM 树的例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span>=<span class="string">"header"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"logo"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"search-form"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"input"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"lang-switcher"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"lang-switcher__item"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"lang-switcher__link"</span> <span class="attr">href</span>=<span class="string">"url"</span>&gt;</span>en<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"lang-switcher__item"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"lang-switcher__link"</span> <span class="attr">href</span>=<span class="string">"url"</span>&gt;</span>ru<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>对应的 BEM 树看起来像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">header</div><div class="line">    ├──logo</div><div class="line">    └──search-form</div><div class="line">        ├──input</div><div class="line">        └──button</div><div class="line">    └──lang-switcher</div><div class="line">        └──lang-switcher__item</div><div class="line">            └──lang-switcher__link</div><div class="line">        └──lang-switcher__item</div><div class="line">            └──lang-switcher__link</div></pre></td></tr></table></figure>
+<p>XML 和 BEMJSON 格式的 BEM 树为：</p>
+<p>XML</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">block:header</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">block:logo</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">block:search-form</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">block:input</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">block:button</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">block:search-form</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">block:lang-switcher</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">elem:item</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">elem:link</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">elem:item</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">elem:item</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">elem:link</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">elem:item</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">block:lang-switcher</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">block:header</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>BEMJSON</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    block: 'header',</div><div class="line">    content : [</div><div class="line">        &#123; block : 'logo' &#125;,</div><div class="line">        &#123;</div><div class="line">            block : 'search-form',</div><div class="line">            content : [</div><div class="line">                &#123; block : 'input' &#125;,</div><div class="line">                &#123; block : 'button' &#125;</div><div class="line">            ]</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            block : 'lang-switcher',</div><div class="line">            content : [</div><div class="line">                &#123;</div><div class="line">                    elem : 'item',</div><div class="line">                    content : [</div><div class="line">                        &#123; elem : 'link' &#125;  </div><div class="line">                    ]</div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    elem : 'item',</div><div class="line">                    content : [</div><div class="line">                        &#123; elem : 'link' &#125;</div><div class="line">                    ]</div><div class="line">                &#125;</div><div class="line">            ]</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="块实现"><a href="#块实现" class="headerlink" title="块实现"></a>块实现</h2><p>一些不同的技术可以决定一个 BEM 实体的以下几个方面：</p>
+<ul>
+<li>行为</li>
+<li>外观</li>
+<li>测试</li>
+<li>模板</li>
+<li>文档</li>
+<li>依赖描述</li>
+<li>辅助数据</li>
+</ul>
+<h2 id="实现技术"><a href="#实现技术" class="headerlink" title="实现技术"></a>实现技术</h2><p>用来实现块的技术</p>
+<p>块可以通过一种或多种技术来实现，比如：</p>
+<ul>
+<li>行为 —— JavaScript，CoffeeScript</li>
+<li>外观 —— CSS,Stylus,Sass</li>
+<li>模板 —— BEMHTML,BH,Pug,HandleBars,XSL</li>
+<li>文档 —— Markdown,Wiki,XML</li>
+</ul>
+<p>举个例子，如果一个块的外观是由 CSS 定义的，这意味着块是用 CSS 技术来实现的。同样，一个块的文档是用 Markdown 格式写得，那么这个块就是由 Markdown 技术实现的。</p>
+<h2 id="块的重定义"><a href="#块的重定义" class="headerlink" title="块的重定义"></a>块的重定义</h2><p>在不同层级上，通过给一个块添加新特性来修改它的实现。</p>
+<h2 id="重定义层级"><a href="#重定义层级" class="headerlink" title="重定义层级"></a>重定义层级</h2><p>一系列的 BEM 实体和它们的部分实现</p>
+<p>一个块的最终实现可以分为不同的重定义层级。每个新层级继承或重写了原来的实现方式。最终的结果是在事先确定的顺序下，把不同定义层级的独立的块组装起来。</p>
+<p><img src="https://en.bem.info/kqvCO2ZXeivuLHCbn2to5chFZrM.png" alt=""></p>
+<p>BEM 实体的任何实现技术都能被重新定义。</p>
+<p>例如，在一个单独的层级上有一个第三方类库链接到了项目上。这个库包含了现成的块的实现。特定项目的块保存在不同的重定义层级上。</p>
+<p>比如说，我们要修改这个库中一个块的外观。我们不需要改变库中代表这个块CSS样式的源代码。我们只需要在项目上创建额外的 CSS 规则。在构建过程中，实现结果将会合并类库中的原始规则和项目中的新规则。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/08/CSS-BEM-命名规则核心概念介绍/" data-id="cj4cq6bvq0003e8vkdhqzj9m2" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/16/深入剖析现代-JavaScript-应用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          深入剖析现代 JavaScript 应用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/07/深度比较选择-Angular-还是-React/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">深度比较选择 Angular 还是 React</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/翻译/" style="font-size: 20px;">翻译</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/24/在-Vue-js-中使用混合/">在 Vue.js 中使用混合</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/19/类的复杂度和函数式编程/">rext</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/16/深入剖析现代-JavaScript-应用/">深入剖析现代 JavaScript 应用</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/08/CSS-BEM-命名规则核心概念介绍/">CSS BEM 命名规则核心概念介绍</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

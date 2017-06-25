@@ -1,0 +1,7 @@
+.DS_Store
+node_modules/
+themes/
+npm-debug.log*
+test/unit/coverage
+.vscode/chrome
+public/
